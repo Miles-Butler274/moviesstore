@@ -19,7 +19,7 @@ def show(request, id):
     template_data = {}
     template_data['title'] = movie.name
     template_data['movie'] = movie
-    template_data['review'] = reviews
+    template_data['reviews'] = reviews
     return render(request, 'movies/show.html',{'template_data': template_data}) 
 
 @login_required
