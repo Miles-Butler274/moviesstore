@@ -9,6 +9,7 @@
                 <hr />
                 <p><b>Description:</b> {{ template_data.movie.description }}</p>
                 <p><b>Price:</b> ${{ template_data.movie.price }}</p>
+                <p><b>Average Rating:</b> {{ template_data.average_rating }} / 5</p>
                 <p class="card-text">
                     <form method="post" action="{% url 'cart.add' id=template_data.movie.id %}">
                         <div class="row">
@@ -37,6 +38,7 @@
                         <h6 class="card-subtitle mb-2 text-muted">
                             {{ review.date }}
                         </h6>
+                        <p class="card-text">Rating: {{ review.rating }}/5</p>
                         <p class="card-text">{{ review.comment }}</p>
                         {% if user.is_authenticated and user == review.user %}
                         <a class="btn btn-primary" href="{% url 'movies.edit_review' id=template_data.movie.id review_id=review.id %}">Edit
@@ -57,9 +59,19 @@
                                     <br /><br />
                                     <form method="POST" action= "{% url 'movies.create_review' id=template_data.movie.id %}">
                                     {% csrf_token %}
+                                    <div class="mb-3">
+                                        <label for="rating" class="form-label">Rating</label>
+                                        <select name="rating" id="rating" class="form-select">
+                                            <option value="1">1 - Unwatchable</option>
+                                            <option value="2">2 - I Fell Asleep</option>
+                                            <option value="3">3 - Acceptable</option>
+                                            <option value="4">4 - Locked In</option>
+                                            <option value="5" selected>5 - Absolute Cinema</option>
+                                        </select>
+                                    </div>
                                     <p>
                                         <label for="comment">Comment:</label>
-                                        <textarea name="comment" required class="form-control" id="comment"></textarea>
+                                        <textarea name="comment" class="form-control" id="comment"></textarea>
                                     </p>
                                     <div class="text-center">
                                         <button type="submit" class="btn bg-dark text-white">

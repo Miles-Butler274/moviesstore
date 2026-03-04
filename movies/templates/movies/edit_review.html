@@ -8,9 +8,19 @@
                 <hr />
                 <form method="POST">
                     {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating</label>
+                        <select name="rating" id="rating" class="form-select">
+                            <option value="1" {% if template_data.review.rating == 1 %}selected{% endif %}>1 - Unwatchable</option>
+                            <option value="2" {% if template_data.review.rating == 2 %}selected{% endif %}>2 - I fell asleep</option>
+                            <option value="3" {% if template_data.review.rating == 3 %}selected{% endif %}>3 - Acceptable</option>
+                            <option value="4" {% if template_data.review.rating == 4 %}selected{% endif %}>4 - Locked in</option>
+                            <option value="5" {% if template_data.review.rating == 5 %}selected{% endif %}>5 - Abosulte Cinema</option>
+                        </select>
+                    </div>
                     <p>
                         <label for="comment">Comment:</label>
-                        <textarea name="comment" required class="form-control" id="comment">{{ template_data.review.comment }}</textarea>
+                        <textarea name="comment" class="form-control" id="comment">{{ template_data.review.comment }}</textarea>
                     </p>
                     <div class="text-start">
                         <button type="submit" class="btn bg-dark text-white">
