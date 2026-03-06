@@ -1,0 +1,13 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>Top Purchasing User</h1>
+
+{% if top_user and top_user.total_movies > 0 %}
+    <p><strong>User:</strong> {{ top_user.username }}</p>
+    <p><strong>Total Movies Purchased:</strong> {{ top_user.total_movies }}</p>
+{% else %}
+    <p>No purchases yet.</p>
+{% endif %}
+
+{% endblock %}
