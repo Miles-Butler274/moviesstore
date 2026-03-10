@@ -1,0 +1,13 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>Top Commenting User</h1>
+
+{% if user and user.total_reviews > 0 %}
+    <p><strong>User:</strong> {{ user.username }}</p>
+    <p><strong>Total Reviews Made:</strong> {{ user.total_reviews }}</p>
+{% else %}
+    <p>No reviews made yet.</p>
+{% endif %}
+
+{% endblock %}
