@@ -1,0 +1,23 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<h1>Movie Performance Statistics</h1>
+<div>
+    <h3>Most Purchased Movie</h3>
+    {% if most_purchased and most_purchased.total_sales > 0 %}
+        <p><strong>Movie:</strong> {{ most_purchased.name }}</p>
+        <p><strong>Total Units Sold:</strong> {{ most_purchased.total_sales }}</p>
+    {% else %}
+        <p>No sales recorded yet.</p>
+    {% endif %}
+</div>
+<hr>
+<div>
+    <h3>Most Reviewed Movie</h3>
+    {% if most_reviewed and most_reviewed.review_count > 0 %}
+        <p><strong>Movie:</strong> {{ most_reviewed.name }}</p>
+        <p><strong>Total Reviews:</strong> {{ most_reviewed.review_count }}</p>
+    {% else %}
+        <p>No reviews submitted yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
